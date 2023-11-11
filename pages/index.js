@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import Router from "next/router";
 
-export default class Index extends Component {
-  componentDidMount = () => {
-    Router.push("/presentation");
-  };
-
-  render() {
-    return <div />;
-  }
+export default function Index() {
+  return (
+    <div>Hello World</div>
+  );
 }
