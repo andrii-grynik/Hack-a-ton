@@ -123,7 +123,6 @@ export default function BlogPostPage() {
         <PostForm />
         <div className={classes.container}>
           <SectionBlogInfo />
-          {/* <SectionComments /> */}
         </div>
       </div>
       <SectionSimilarStories />
