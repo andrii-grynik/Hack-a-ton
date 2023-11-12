@@ -24,15 +24,15 @@ export default function SectionSimilarStories() {
         <GridContainer>
           <GridItem md={12}>
             <h2 className={classes.title + " " + classes.textCenter}>
-              Local Sustainability outreach
+              Local Sustainability board
             </h2>
             <br />
             <GridContainer>
               <GridItem xs={12} sm={4} md={4}>
                 <Card blog>
                   <CardHeader image>
-                    <a href="#pablo">
-                      <img src="/img/examples/blog6.jpg" alt="..." />
+                    <a href="https://www.calgary.ca/waste/drop-off/community-recycling-depots.html">
+                      <img src="/img/rcycle.png" alt="..." />
                     </a>
                     <div
                       className={classes.coloredShadow}
@@ -44,28 +44,23 @@ export default function SectionSimilarStories() {
                   </CardHeader>
                   <CardBody>
                     <Info>
-                      <h6>ENTERPRISE</h6>
+                      <h6>Community recycling depot locations</h6>
                     </Info>
                     <h4 className={classes.cardTitle}>
-                      <a href="#pablo">
-                        Autodesk looks to future of 3D printing with Project
-                        Escher
+                      <a>
+                        Lets help the world to be a better place... Starting
+                        with your community!
                       </a>
                     </h4>
-                    <p className={classes.description}>
-                      Like so many organizations these days, Autodesk is a
-                      company in transition. It was until recently a traditional
-                      boxed software company selling licenses.
-                      <a href="#pablo"> Read More </a>
-                    </p>
+                    <p className={classes.description}></p>
                   </CardBody>
                 </Card>
               </GridItem>
               <GridItem xs={12} sm={4} md={4}>
                 <Card blog>
                   <CardHeader image>
-                    <a href="#pablo">
-                      <img src="/img/examples/blog8.jpg" alt="..." />
+                    <a href="https://www.sustainablecalgary.org/">
+                      <img src="/img/susCal.png" alt="..." />
                     </a>
                     <div
                       className={classes.coloredShadow}
@@ -77,27 +72,26 @@ export default function SectionSimilarStories() {
                   </CardHeader>
                   <CardBody>
                     <Success>
-                      <h6>STARTUPS</h6>
+                      <h6>Ways to improve Sustainability in Calgary</h6>
                     </Success>
                     <h4 className={classes.cardTitle}>
-                      <a href="#pablo">
-                        Lyft launching cross-platform service this week
+                      <a>
+                        Last year, Sustainable Calgary prototyped the Connaught
+                        Open Street where we transformed part of 10th Street
+                        into a public space. This innovative project was
+                        brainstormed by students at Connaught School who wanted
+                        to make walking and wheeling to school safer and more
+                        fun for everyone.
                       </a>
                     </h4>
-                    <p className={classes.description}>
-                      Like so many organizations these days, Autodesk is a
-                      company in transition. It was until recently a traditional
-                      boxed software company selling licenses.
-                      <a href="#pablo"> Read More </a>
-                    </p>
                   </CardBody>
                 </Card>
               </GridItem>
               <GridItem xs={12} sm={4} md={4}>
                 <Card blog>
                   <CardHeader image>
-                    <a href="#pablo">
-                      <img src="/img/examples/blog7.jpg" alt="..." />
+                    <a href="https://www.calgary.ca/planning/projects/green-buildings.html">
+                      <img src="/img/greenB.png" alt="..." />
                     </a>
                     <div
                       className={classes.coloredShadow}
@@ -110,20 +104,19 @@ export default function SectionSimilarStories() {
                   <CardBody>
                     <Danger>
                       <h6>
-                        <TrendingUp /> ENTERPRISE
+                        <TrendingUp /> See how Calgary builds green!
                       </h6>
                     </Danger>
                     <h4 className={classes.cardTitle}>
-                      <a href="#pablo">
-                        6 insights into the French Fashion landscape
+                      <a>
+                        The City of Calgary is committed to taking action to
+                        reduce the cost of operating our buildings while
+                        addressing our goals to improve the long-term resilience
+                        of infrastructure such as administrative buildings,
+                        water treatment plants, composting facilities, and
+                        recreation centres.
                       </a>
                     </h4>
-                    <p className={classes.description}>
-                      Like so many organizations these days, Autodesk is a
-                      company in transition. It was until recently a traditional
-                      boxed software company selling licenses.
-                      <a href="#pablo"> Read More </a>
-                    </p>
                   </CardBody>
                 </Card>
               </GridItem>
