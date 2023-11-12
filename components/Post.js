@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import GridContainer from "/components/Grid/GridContainer.js";
 import GridItem from "/components/Grid/GridItem.js";
@@ -7,14 +7,23 @@ import Card from "/components/Card/Card.js";
 import sectionBlogInfoStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostSections/sectionBlogInfoStyle.js";
 import Image from 'next/image';
 import Comments from "./Comments";
+// import { getComments } from "../database/comments";
+
 
 const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({ post }) {
   
-  const { title, description, author, category, comments, status } = post;
+  const [comments, setComments] = useState([]);
+  const { _id, title, description, author, category, available } = post;
   
   const [showComment, setShowComment] = React.useState(false);
+
+  // useEffect(async () => {
+  //   const commentResult =  await getComments(_id);
+  //   setComments(JSON.parse(JSON.stringify(commentResult)));
+  //   console.log("comments, ", comments)
+  // },[])
 
   const updatePostStatus = () => {
     //NEED TO WORK! make a database call to update status of post
@@ -39,7 +48,7 @@ export default function Posts({ post }) {
               />                
               </GridItem>
               <GridItem xs={12} sm={8} md={8}>
-                <h4 className={classes.cardTitle}>{author}</h4>
+                <h4 className={classes.cardTitle}>{author.name}</h4>
                 <h3 className={classes.cardTitle}>{title}</h3>
                 <p className={classes.description}>
                   {description}
@@ -48,9 +57,9 @@ export default function Posts({ post }) {
                   {category}
                 </p>
                 <p className={classes.description}>
-                  {!status && "Not "} Available
+                  {!available && "Not "} Available
                 </p>
-                {comments && 
+                {/* {comments && 
                 <Button 
                 color="primary" 
                 round className={classes.footerButtons}
@@ -58,8 +67,8 @@ export default function Posts({ post }) {
                 >
                       {showComment ? "Hide" : "Show"} Comments
                   </Button>}
-                
-                  {status && <Button 
+                 */}
+                  {available && <Button 
                 color="primary" 
                 round className={classes.footerButtons}
                 onClick={updatePostStatus}
@@ -74,7 +83,7 @@ export default function Posts({ post }) {
       </GridContainer>
     </div>
 
-      {showComment && <Comments comments={comments} />}
+      {/* {showComment && <Comments comments={comments} />} */}
 </>
 
   );

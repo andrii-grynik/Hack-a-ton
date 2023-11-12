@@ -7,7 +7,7 @@ export default function Posts({ posts }) {
 
   const displayPosts = () => {
     return posts.map((post) => (
-      <Post post={post} />
+      <Post key={post._id} post={post} />
     ));
   };
 
