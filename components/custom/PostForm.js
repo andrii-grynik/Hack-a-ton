@@ -15,6 +15,7 @@ export default function PostForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [showCreatePost, setShowCreatePost] = useState(false);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -35,7 +36,7 @@ export default function PostForm() {
     setSelectedFile(file);
   };
 
-  const handlePostComment = async () => {
+  const handleCreatePost = async () => {
     // Prepare data to send to the API handler
     const formData = new FormData();
     formData.append("title", title);
@@ -54,10 +55,20 @@ export default function PostForm() {
     } else {
       console.error('Failed to create post:', response.statusText);
     }
+    setShowCreatePost(false);
   };
 
+  const handleShowCreatePostToggle = () => {
+    setShowCreatePost(true);
+  }
+
   return (
-    <Media
+    <>
+    {!showCreatePost && <Button color="tumblr" className={classes.floatRight} onClick={handleShowCreatePostToggle}>
+    Create Post
+  </Button>}
+    
+   {showCreatePost && <Media
       body={
         <div>
           <GridContainer>
@@ -104,11 +115,12 @@ export default function PostForm() {
           <Button color="tumblr" className={classes.floatRight} onClick={handleImageUpload}>
             Upload Image
           </Button>
-          <Button color="primary" className={classes.floatRight} onClick={handlePostComment}>
+          <Button color="primary" className={classes.floatRight} onClick={handleCreatePost}>
             Create Post
           </Button>
         </div>
       }
-    />
+    />} 
+    </>
   );
 }

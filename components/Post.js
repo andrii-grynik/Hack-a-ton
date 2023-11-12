@@ -14,13 +14,15 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({ post }) {
 
-  const { _id, title, description, author, category, available } = post;
+  const { _id, title, description, author, category, available,imageUrl } = post;
   const [comments, setComments] = useState([]);
   const [updateComment, setUpdateComment] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [status, setStatus] = useState(available);
-
   const [showComment, setShowComment] = React.useState(false);
+
+  console.log("imageUrl: ", imageUrl)
+  console.log("imageUrl equal check: ", imageUrl === "/images/testimage.jpg")
 
   useEffect(() => {
     const postId = _id;
@@ -69,8 +71,9 @@ export default function Posts({ post }) {
               <GridContainer>
                 <GridItem xs={12} sm={4} md={4}>
                   <Image
-                    src="/img/examples/bg2.jpg"
-                    alt="Item for recycling"
+                    src={"/images/IMG_3612.jpg"}
+                    // scr={encodeURIComponent(decodeURIComponent(imageUrl).replace(/\s+/g, ''));}
+                    alt={title}
                     width={500}
                     height={500}
                   />
