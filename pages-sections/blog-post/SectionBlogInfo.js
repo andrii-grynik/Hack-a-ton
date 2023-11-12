@@ -113,6 +113,13 @@ export default function SectionBlogInfo() {
                   >
                     View Comments
                   </Button>
+                  <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={() => handleClick(index, e)}
+                  >
+                    API
+                  </Button>
 
                   <Menu
                     id="simple-menu"
