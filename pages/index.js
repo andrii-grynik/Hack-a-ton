@@ -1,9 +1,11 @@
 import Layout from "../components/Layout";
 import Posts from "../components/Posts";
+import Categories from "../components/Categories";
 
 export default function Index({ postList, comments }) {
   return (
     <Layout>
+      <Categories />
       <Posts posts={postList} />
     </Layout>
   );
