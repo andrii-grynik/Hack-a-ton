@@ -14,17 +14,16 @@ export default function Index({ postFromDb}) {
   useEffect(() => {    
     //NEED TO WORK! Refresh list of post based on category selected
     const category = categories[currentCategory].toLocaleLowerCase();
-    console.log("currentCategory: ",category );
-    // const response = axios
-    //   .get("/api/posts/", {
-    //     params: {
-    //       category: category
-    //     }
-    //   })
-    //   .then((result) => {
-    //   console.log("result: ", result);
-    //   })
-    //   .catch(err => console.error(err));   
+    const response = axios
+      .get("/api/posts/", {
+        params: {
+          category: category
+        }
+      })
+      .then((result) => {
+      console.log("category fetch result: ", result);
+      })
+      .catch(err => console.error(err));   
   },[currentCategory])
 
 
