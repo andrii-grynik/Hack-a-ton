@@ -1,6 +1,7 @@
 /*eslint-disable*/ import React from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
+import PostForm from "../components/custom/PostForm";
 import makeStyles from "@mui/styles/makeStyles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -117,7 +118,9 @@ export default function BlogPostPage() {
           </GridContainer>
         </div>
       </Parallax>
+
       <div className={classes.main}>
+        <PostForm />
         <div className={classes.container}>
           <SectionBlogInfo />
           {/* <SectionComments /> */}

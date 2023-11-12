@@ -1,29 +1,83 @@
+import sectionPillsStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostsSections/sectionPillsStyle.js";
 import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// nodejs library to set properties for components
-import PropTypes from "prop-types";
-
-import makeStyles from '@mui/styles/makeStyles';
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
-
-// core components
+import makeStyles from "@mui/styles/makeStyles";
+import Tooltip from "@mui/material/Tooltip";
+import FormatAlignLeft from "@mui/icons-material/FormatAlignLeft";
 import GridContainer from "/components/Grid/GridContainer.js";
 import GridItem from "/components/Grid/GridItem.js";
-
+import Card from "/components/Card/Card.js";
+import CardBody from "/components/Card/CardBody.js";
+import Button from "/components/CustomButtons/Button.js";
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import styles from "/styles/jss/nextjs-material-kit-pro/components/navPillsStyle.js";
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(sectionPillsStyle);
 
-export default function NavPills(props) {
+const Categories = ({updateCurrentCategory}) => {
+  const classes = useStyles();
+
+  const updateCategory = (selectedCategory) => {
+    updateCurrentCategory(selectedCategory)
+  }
+
+  return ( 
+
+    <div className={classes.section}>
+    <GridContainer justifyContent="center">
+      <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
+        <NavPills
+          updateCategory={updateCategory}
+          alignCenter
+          tabs={[
+            {
+              tabButton: "All",
+              tabContent: "",
+            },
+            {
+              tabButton: "Food",
+              tabContent: "",
+            },
+            {
+              tabButton: "Clothing",
+              tabContent: "",
+            },
+            {
+              tabButton: "Furniture",
+              tabContent: "",
+            },
+            {
+              tabButton: "Electronic",
+              tabContent: "",
+            },
+            {
+              tabButton: "Others",
+              tabContent: "",
+            },
+          ]}
+        />
+      </GridItem>
+    </GridContainer>   
+  </div>
+   );
+}
+ 
+export default Categories;
+
+
+
+const useStyless = makeStyles(styles);
+
+function NavPills(props) {
   const [active, setActive] = React.useState(props.active);
   const handleChange = (event, active) => {
     setActive(active);
-    console.log("clicked!: ", active)
+    props.updateCategory(active)
   };
   const { tabs, color, horizontal, alignCenter } = props;
-  const classes = useStyles();
+  const classes = useStyless();
   const flexContainerClasses = classNames({
     [classes.flexContainer]: true,
     [classes.horizontalDisplay]: horizontal !== undefined

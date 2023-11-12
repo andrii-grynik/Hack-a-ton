@@ -7,8 +7,8 @@ import Grid from "@mui/material/Grid";
 
 const styles = {
   grid: {
-    marginRight: "-15px",
-    marginLeft: "-15px",
+    // marginRight: "-15px",
+    // marginLeft: "-15px",
     width: "auto",
   },
 };

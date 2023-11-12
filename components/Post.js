@@ -1,43 +1,55 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import makeStyles from "@mui/styles/makeStyles";
 import GridContainer from "/components/Grid/GridContainer.js";
 import GridItem from "/components/Grid/GridItem.js";
 import Button from "/components/CustomButtons/Button.js";
 import Card from "/components/Card/Card.js";
 import sectionBlogInfoStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostSections/sectionBlogInfoStyle.js";
-import Media from "/components/Media/Media.js";
-import CustomInput from "/components/CustomInput/CustomInput.js";
 import Image from 'next/image';
+import Comments from "./Comments";
+// import { getComments } from "../database/comments";
+
 
 const useStyles = makeStyles(sectionBlogInfoStyle);
 
-export default function Posts({post}) {
-
-  const { title, description, author, category, comments,status } = post;
+export default function Posts({ post }) {
+  
+  const [comments, setComments] = useState([]);
+  const [updateComment, setUpdateComment] = useState(false);
+  const { _id, title, description, author, category, available } = post;
   
   const [showComment, setShowComment] = React.useState(false);
 
-  return(
-    <>   
-      <SectionBlogInfo 
-        title={title} 
-        description={description} 
-        author={author} 
-        category={category} 
-        hasComment={comments? true: false}
-        toggleShowComment={setShowComment}
-        toggleStatus={showComment}
-      />
-      {showComment &&  <SectionComments comments={comments}/>  }             
-  </>
-  )
-}
+  // //NEED HELP HERE
+  // useEffect(async() => {
+  //   console.log("here to fetch comment!, ", _id);
+  //   console.log("here to fetch comment!, ", typeof(_id));
 
+  //   let allComemnts = [];
+  // try {
+  //   const result = await getComments(_id);
+  //   allComemnts = JSON.parse(JSON.stringify(result));
+  // } catch (err) {
+  //   allComemnts = [];
+  //   console.log("err: ",err);
+  //   }    
+    
+  //   console.log("allComemnts! ", allComemnts);
+  //   setComments(allComemnts);
+  //   setUpdateComment(false);
+  // },[updateComment])
+  //  //NEED HELP UNTIL HERE
 
-function SectionBlogInfo({ title, description, author, category, hasComment,toggleShowComment,toggleStatus }) {
+  const updatePostStatus = () => {
+    //NEED TO WORK! make a database call to update status of post
+    console.log("changing post status!")
+    setUpdateComment(true);
+  }
+
 
   const classes = useStyles();
   return (
+    <>
     <div className={classes.section}>
       <GridContainer justifyContent="center">
         <GridItem xs={12} sm={10} md={8}>
@@ -52,7 +64,7 @@ function SectionBlogInfo({ title, description, author, category, hasComment,togg
               />                
               </GridItem>
               <GridItem xs={12} sm={8} md={8}>
-                <h4 className={classes.cardTitle}>{author}</h4>
+                <h4 className={classes.cardTitle}>{author.name}</h4>
                 <h3 className={classes.cardTitle}>{title}</h3>
                 <p className={classes.description}>
                   {description}
@@ -61,15 +73,24 @@ function SectionBlogInfo({ title, description, author, category, hasComment,togg
                   {category}
                 </p>
                 <p className={classes.description}>
-                  {!toggleStatus && "Not "} Available
+                  {!available && "Not "} Available
                 </p>
-                {hasComment && 
+                {/* {comments && 
                 <Button 
                 color="primary" 
                 round className={classes.footerButtons}
-                onClick={() => toggleShowComment(!toggleStatus)}
+                onClick={()=> setShowComment(!showComment)}
                 >
-                  Show Comments
+                      {showComment ? "Hide" : "Show"} Comments
+                  </Button>}
+                 */}
+                  {available && <Button 
+                color="primary" 
+                round className={classes.footerButtons}
+                onClick={updatePostStatus}
+                >
+                  Mark As Unavailable
+                  {/* Show "Mark As Unavailable" button only to the owner of the post  */}
               </Button>}
               </GridItem>
             </GridContainer>
@@ -77,66 +98,9 @@ function SectionBlogInfo({ title, description, author, category, hasComment,togg
         </GridItem>
       </GridContainer>
     </div>
-  );
-}
 
-function SectionComments({ comments }) {
-  
-  const classes = useStyles();
+      {/* {showComment && <Comments comments={comments} />} */}
+</>
 
-  const displayComments = () => {  
-
-  return  comments.map(({ author,details, time }) => (      
-    <>   
-       <Media
-              avatar="/img/faces/card-profile4-square.jpg"
-              title={
-                <span>
-                  {author} <small>· {time}</small>
-                </span>
-              }
-              body={
-                <p className={classes.color555}>
-                  {details}
-                </p>
-              }             
-            />        
-   </>
-    ))
-  }
-
-  return (
-    
-    <div className={classes.section}>
-      <GridContainer justifyContent="center">
-        <GridItem xs={12} sm={10} md={8}>
-          <div>
-            <h3 className={classes.title}>{comments.length} Comments</h3>
-            {displayComments()}           
-          </div>
-            <Media
-            avatar="/img/faces/card-profile6-square.jpg"
-            body={
-              <CustomInput
-                labelText=" Write your comment..."
-                id="nice"
-                formControlProps={{
-                  fullWidth: true,
-                }}
-                inputProps={{
-                  multiline: true,
-                  rows: 1,
-                }}
-              />
-            }
-            footer={
-              <Button color="primary" round className={classes.footerButtons}>
-                Post comment
-              </Button>
-            }
-          />
-        </GridItem>
-      </GridContainer>
-    </div>
   );
 }
