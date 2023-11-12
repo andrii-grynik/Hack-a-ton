@@ -1,7 +1,5 @@
-/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
 import makeStyles from "@mui/styles/makeStyles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -9,7 +7,6 @@ import Hidden from "@mui/material/Hidden";
 
 // core components
 import Button from "/components/CustomButtons/Button.js";
-
 import styles from "/styles/headerLinksStyle.js";
 
 const useStyles = makeStyles(styles);
