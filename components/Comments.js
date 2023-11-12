@@ -20,8 +20,8 @@ export default function Comments({ comments }) {
 
   const handleCommentSubmit = () => {
     console.log("adding comment! ", newComment);
-    //make a database call to add comments
-    
+    //NEED TO WORK! make a database call to add new comment to the post
+
     // if (newComment.trim() !== "") {
     //   const updatedPosts = [...posts];
     //   updatedPosts[postIndex].comments.push(newComment.trim());

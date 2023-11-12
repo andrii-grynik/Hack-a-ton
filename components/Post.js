@@ -17,7 +17,7 @@ export default function Posts({ post }) {
   const [showComment, setShowComment] = React.useState(false);
 
   const updatePostStatus = () => {
-    //make a database call to update status
+    //NEED TO WORK! make a database call to update status of post
     console.log("changing post status!")
   }
 
@@ -65,6 +65,7 @@ export default function Posts({ post }) {
                 onClick={updatePostStatus}
                 >
                   Mark As Unavailable
+                  {/* Show "Mark As Unavailable" button only to the owner of the post  */}
               </Button>}
               </GridItem>
             </GridContainer>

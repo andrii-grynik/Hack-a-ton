@@ -5,7 +5,10 @@ import Categories from "../components/Categories";
 
 export default function Index({ postList, comments }) {
   const [currentCategory, setCurrentCategory] = React.useState(0);
-console.log("currentCategory: ",currentCategory)
+  
+  console.log("currentCategory: ",currentCategory)
+  //NEED TO WORK! Refresh list of post based on category selected
+
   return (
     <Layout>
       <Categories updateCurrentCategory={setCurrentCategory}/>
@@ -17,6 +20,12 @@ console.log("currentCategory: ",currentCategory)
 const categories = ["All","Food","Clothing","Furniture","Electronic","Others"];
 
 export async function getStaticProps() {
+  //NEED TO WORK! Replace with database retrieval of post & comment
+  //get all Post
+    //map each post
+      //get Comment for each post
+
+
   let comments = [
     { author: "user3", details: "I like this!",time: "3 days ago"  },
     { author: "user4", details: "Where can I collect this item from?", time: "4 mins ago" }];
@@ -29,9 +38,7 @@ export async function getStaticProps() {
     { title: "Free Food!", description: "I have lots of free food! Feel free to come collect it!", category: "Food", author: "user2", status:true },
     { title: "Free Food!", description: "I have lots of free food! Feel free to come collect it!", category: "Food", author: "user2", status:true,comments: comments1 }];
 
-  //get all Post
-    //map each post
-      //get Comment for each post
+  
 
    return {
     props: { postList, comments },
