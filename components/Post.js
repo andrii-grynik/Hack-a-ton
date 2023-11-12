@@ -14,9 +14,11 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({ post }) {
 
+  const { _id, title, description, author, category, available } = post;
   const [comments, setComments] = useState([]);
   const [updateComment, setUpdateComment] = useState(false);
-  const { _id, title, description, author, category, available } = post;
+  const [updateStatus, setUpdateStatus] = useState(false);
+  const [status, setStatus] = useState(available);
 
   const [showComment, setShowComment] = React.useState(false);
 
@@ -44,10 +46,16 @@ export default function Posts({ post }) {
     setUpdateComment(false);
   }, [updateComment]);
 
+  useEffect(() => {
+    if(updateStatus){      
+      setStatus(false);
+    }
+  },[updateStatus])
+
   const updatePostStatus = () => {
     //NEED TO WORK! make a database call to update status of post
     console.log("changing post status!");
-    setUpdateComment(true);
+    setUpdateStatus(true);
   };
 
 
@@ -77,7 +85,7 @@ export default function Posts({ post }) {
                     {category}
                   </p>
                   <p className={classes.description}>
-                    {!available && "Not "} Available
+                    {!status && "Not "} Available
                   </p>
                   { comments && 
                 <Button 
@@ -88,7 +96,7 @@ export default function Posts({ post }) {
                       {showComment ? "Hide" : "Show"} Comments
                   </Button>}
                 
-                  {available && <Button
+                  {status && <Button
                     color="primary"
                     round className={classes.footerButtons}
                     onClick={updatePostStatus}
