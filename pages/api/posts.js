@@ -2,7 +2,6 @@ import { createPost, getPosts } from "../../database/posts";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    console.log('fsadsfdas', req.query);
     try {
       const posts = await getPosts(req.query);
       res.status(200).json(posts);

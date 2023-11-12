@@ -15,11 +15,6 @@ const postData = {
   }
 };
 
-const filter = {
-  available: true,
-  category: "furniture"
-};
-
 export async function createPost(postData) {
   const driver = await getDriver();
   const db = driver.db("market");
@@ -27,12 +22,14 @@ export async function createPost(postData) {
   await collection.insertOne(postData);
 }
 
-export async function getPosts(filter) {
+export async function getPosts(category) {
   const driver = await getDriver();
-  const postAvailability = filter.available.toLowerCase() === 'true';;
   const db = driver.db("market");
   const collection = db.collection("posts");
-  const posts = await collection.find({ available: postAvailability, category: filter.category }).toArray();
-  return posts;
+  if (category) {
+    console.log('category', category);
+    return await collection.find({ available: true, category: category }).toArray();
+  }
+  return await collection.find({ available: true }).toArray();
 }
 
