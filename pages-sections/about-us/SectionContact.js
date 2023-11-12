@@ -5,7 +5,7 @@ import classNames from "classnames";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 // @mui/icons-material
 // core components
 import GridContainer from "/components/Grid/GridContainer.js";
@@ -34,18 +34,14 @@ export default function SectionContact() {
           <h2 className={classNames(classes.title, classes.textCenter)}>
             Want to work with us?
           </h2>
-          <h4 className={classNames(classes.description, classes.textCenter)}>
-            Divide details about your product or agency work into parts. Write a
-            few lines about each one and contact us about any further
-            collaboration. We will get back to you in a couple of hours.
-          </h4>
+
           <form>
             <GridContainer>
               <GridItem md={4} sm={4}>
                 <CustomInput
                   labelText="Your name"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                 />
               </GridItem>
@@ -53,7 +49,7 @@ export default function SectionContact() {
                 <CustomInput
                   labelText="Your email"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                 />
               </GridItem>
@@ -68,22 +64,22 @@ export default function SectionContact() {
                 >
                   <Select
                     MenuProps={{
-                      className: classes.selectMenu
+                      className: classes.selectMenu,
                     }}
                     classes={{
-                      select: classes.select
+                      select: classes.select,
                     }}
                     value={specialitySelect}
                     onChange={handleSpeciality}
                     inputProps={{
                       name: "specialitySelect",
-                      id: "speciality-select"
+                      id: "speciality-select",
                     }}
                   >
                     <MenuItem
                       disabled
                       classes={{
-                        root: classes.selectMenuItem
+                        root: classes.selectMenuItem,
                       }}
                     >
                       Speciality
@@ -91,7 +87,7 @@ export default function SectionContact() {
                     <MenuItem
                       classes={{
                         root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected
+                        selected: classes.selectMenuItemSelected,
                       }}
                       value="1"
                     >
@@ -100,7 +96,7 @@ export default function SectionContact() {
                     <MenuItem
                       classes={{
                         root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected
+                        selected: classes.selectMenuItemSelected,
                       }}
                       value="2"
                     >
@@ -109,7 +105,7 @@ export default function SectionContact() {
                     <MenuItem
                       classes={{
                         root: classes.selectMenuItem,
-                        selected: classes.selectMenuItemSelected
+                        selected: classes.selectMenuItemSelected,
                       }}
                       value="3"
                     >

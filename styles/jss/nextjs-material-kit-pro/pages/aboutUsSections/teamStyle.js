@@ -4,7 +4,7 @@ import {
   title,
   description,
   cardTitle,
-  grayColor
+  grayColor,
 } from "/styles/jss/nextjs-material-kit-pro.js";
 
 const teamStyle = {
@@ -13,28 +13,28 @@ const teamStyle = {
   title,
   description: {
     ...description,
-    marginBottom: "80px"
+    marginBottom: "80px",
   },
   cardTitle,
   cardDescription: {
-    color: grayColor[0]
+    color: "black",
   },
   team: {
-    padding: "80px 0px"
+    padding: "80px 0px",
   },
   textCenter: {
-    textAlign: "center!important"
+    textAlign: "center!important",
   },
   img: {
     width: "100%",
-    height: "auto"
+    height: "auto",
   },
   textMuted: {
-    color: grayColor[7] + " !important"
+    color: "black" + " !important",
   },
   justifyContent: {
-    justifyContent: "center!important"
-  }
+    justifyContent: "center!important",
+  },
 };
 
 export default teamStyle;
