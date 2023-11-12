@@ -22,12 +22,7 @@ export default function Media(props) {
   } = props;
   const classes = useStyles();
   return (
-    <div {...rest} className={classes.media} style={{ padding: "2rem" }}>
-      {/* <a href={avatarLink} className={classes.mediaLink}>
-        <div className={classes.mediaAvatar}>
-          <img src={avatar} alt={avatarAlt} />
-        </div>
-      </a> */}
+    <div {...rest} className={classes.media}>
       <div className={classes.mediaBody}>
         {title !== undefined ? (
           <h4 className={classes.mediaHeading}>{title}</h4>
