@@ -76,7 +76,7 @@ export default function Posts({ post }) {
                   />
                 </GridItem>
                 <GridItem xs={12} sm={8} md={8}>
-                  <h4 className={classes.cardTitle}>{author.name}</h4>
+                  <a href={"/user/" + author.id}><h4 className={classes.cardTitle}>{author.name}</h4></a>
                   <h3 className={classes.cardTitle}>{title}</h3>
                   <p className={classes.description}>
                     {description}

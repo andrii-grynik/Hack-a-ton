@@ -34,8 +34,9 @@ export async function getPosts(category) {
 }
 
 export async function getUsersPosts(userId) {
+  const id = Number(userId);
   const driver = await getDriver();
   const db = driver.db("market");
   const collection = db.collection("posts");
-  return await collection.find({ "author.id": userId }).toArray();
+  return await collection.find({ "author.id": id }).toArray();
 }

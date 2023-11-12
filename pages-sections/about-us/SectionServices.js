@@ -1,7 +1,7 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 // @mui/icons-material
 import Gesture from "@mui/icons-material/Gesture";
 import Build from "@mui/icons-material/Build";
@@ -28,64 +28,9 @@ export default function SectionServices() {
             classes.textCenter
           )}
         >
-          <h2 className={classes.title}>We build awesome products</h2>
-          <h5 className={classes.description}>
-            This is the paragraph where you can write more details about your
-            product. Keep you user engaged by providing meaningful information.
-          </h5>
-        </GridItem>
-      </GridContainer>
-      <GridContainer>
-        <GridItem md={4} sm={4}>
-          <InfoArea
-            title="1. Design"
-            description={
-              <span>
-                <p>
-                  The moment you use Material Kit, you know you’ve never felt
-                  anything like it. With a single use, this powerfull UI Kit
-                  lets you do more than ever before.{" "}
-                </p>
-                <a href="#pablo">Find more...</a>
-              </span>
-            }
-            icon={Gesture}
-            iconColor="rose"
-          />
-        </GridItem>
-        <GridItem md={4} sm={4}>
-          <InfoArea
-            title="2. Develop"
-            description={
-              <span>
-                <p>
-                  Divide details about your product or agency work into parts.
-                  Write a few lines about each one. A paragraph describing a
-                  feature will be enough.{" "}
-                </p>
-                <a href="#pablo">Find more...</a>
-              </span>
-            }
-            icon={Build}
-            iconColor="rose"
-          />
-        </GridItem>
-        <GridItem md={4} sm={4}>
-          <InfoArea
-            title="3. Make Edits"
-            description={
-              <span>
-                <p>
-                  Divide details about your product or agency work into parts.
-                  Write a few lines about each one. A paragraph describing a
-                  feature will be enough.{" "}
-                </p>
-                <a href="#pablo">Find more...</a>
-              </span>
-            }
-            icon="mode_edit"
-            iconColor="rose"
-          />
+          <h2 className={classes.title}>
+            We build awesome products... At least My Momma says so!{" "}
+          </h2>
         </GridItem>
       </GridContainer>
     </div>
