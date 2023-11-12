@@ -46,6 +46,7 @@ export default function PostForm({ addPost }) {
       imageUrl: `/images/${selectedFile.name}`,
       title,
       description,
+      created: new Date(),
       author: {
         id: 1,
         name: "John Doe",

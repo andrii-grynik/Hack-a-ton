@@ -28,9 +28,9 @@ export async function getPosts(category) {
   const db = driver.db("market");
   const collection = db.collection("posts");
   if (category) {
-    return await collection.find({ available: true, category: category }).toArray();
+    return await collection.find({ available: true, category: category }).sort({ created: -1 }).toArray();
   }
-  return await collection.find({ available: true }).toArray();
+  return await collection.find({ available: true }).sort({ created: -1 }).toArray();
 }
 
 export async function getUsersPosts(userId) {
@@ -38,5 +38,5 @@ export async function getUsersPosts(userId) {
   const driver = await getDriver();
   const db = driver.db("market");
   const collection = db.collection("posts");
-  return await collection.find({ "author.id": id }).toArray();
+  return await collection.find({ "author.id": id }).sort({ created: -1 }).toArray();
 }

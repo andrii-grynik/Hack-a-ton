@@ -18,8 +18,7 @@ export default function Index({ postFromDb }) {
 
   const addPost = (post) => {
     console.log(post);
-    const newPosts = [...allPost];
-    newPosts.push(post);
+    const newPosts = [post, ...allPost];
     setAllPost(newPosts);
   };
 

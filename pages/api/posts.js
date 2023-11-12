@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { createPost,getPosts } from '../../database/posts';
+import { createPost, getPosts } from '../../database/posts';
 import multer from 'multer';
 
 export const config = {
@@ -33,7 +33,7 @@ const upload = multer({
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    try {    
+    try {
       const category = req.query.category;
       console.log("category param: ", category);
       const posts = await getPosts(category);
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     if (req.method !== 'POST') {
       return res.status(405).end(); // Method Not Allowed
     }
-  
+
     try {
       // Assuming 'image' is the field name
       upload.single('image')(req, res, async (err) => {
@@ -55,37 +55,38 @@ export default async function handler(req, res) {
           console.error('Error uploading image:', err);
           return res.status(500).json({ error: 'Internal Server Error' });
         }
-  
+
         const file = req.file;
         console.log(req.file);
         const { title, description } = req.body;
         const uploadDir = path.join(process.cwd(), 'public/images'); // Update the path to your public folder
-  
+
         const postData = {
           imageUrl: `/images/${file.originalname}`,
           title: title,
           description: description,
           available: true,
           category: "other",
+          created: new Date(),
           author: {
             id: 1,
-            name: "HARDCODED",
+            name: "John Doe",
             profileImage: "HARDCODED",
             itemsDonated: 20,
             itemsReceived: 12,
             points: 200
           }
         };
-  
+
         // Create the 'public/images' directory if it doesn't exist
         if (!fs.existsSync(uploadDir)) {
           fs.mkdirSync(uploadDir, { recursive: true });
         }
-  
+
         const filePath = path.join(uploadDir, file.originalname);
         createPost(postData);
         fs.writeFileSync(filePath, file.buffer);
-  
+
         res.status(201).json({ filePath: file.originalname });
       });
     } catch (error) {
@@ -93,6 +94,6 @@ export default async function handler(req, res) {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
-  
+
 }
 
