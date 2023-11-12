@@ -8,31 +8,13 @@ import { getPosts } from "../database/posts";
 import makeStyles from '@mui/styles/makeStyles';
 import styles from "/styles/jss/nextjs-material-kit-pro/pages/ecommerceSections/blogStyle.js";
 import GridContainer from "/components/Grid/GridContainer.js";
-
-import PropTypes from "prop-types";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import FormatAlignLeft from "@mui/icons-material/FormatAlignLeft";
-import Favorite from "@mui/icons-material/Favorite";
-import Header from "/components/Header/Header.js";
-import HeaderLinks from "/components/Header/HeaderLinks.js";
-import Parallax from "/components/Parallax/Parallax.js";
-import Footer from "/components/Footer/Footer.js";
 import GridItem from "/components/Grid/GridItem.js";
 import Button from "/components/CustomButtons/Button.js";
 // sections for this page
-import SectionText from "/pages-sections/blog-post/SectionText.js";
-import SectionBlogInfo from "/pages-sections/blog-post/SectionBlogInfo.js";
-import SectionComments from "/pages-sections/blog-post/SectionComments.js";
 import SectionSimilarStories from "/pages-sections/blog-post/SectionSimilarStories.js";
-
-import gpt from "./gpt";
-
 import blogPostPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 
-
 const useStyles = makeStyles(styles);
-const useStyles2 = makeStyles(blogPostPageStyle);
 
 export default function Index({ postFromDb}) {
 
