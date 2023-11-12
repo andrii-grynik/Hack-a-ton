@@ -1,16 +1,20 @@
+import React from "react";
 import Layout from "../components/Layout";
 import Posts from "../components/Posts";
 import Categories from "../components/Categories";
 
 export default function Index({ postList, comments }) {
+  const [currentCategory, setCurrentCategory] = React.useState(0);
+console.log("currentCategory: ",currentCategory)
   return (
     <Layout>
-      <Categories />
+      <Categories updateCurrentCategory={setCurrentCategory}/>
       <Posts posts={postList} />
     </Layout>
   );
 }
 
+const categories = ["All","Food","Clothing","Furniture","Electronic","Others"];
 
 export async function getStaticProps() {
   let comments = [

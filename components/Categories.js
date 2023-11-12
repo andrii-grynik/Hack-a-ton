@@ -16,12 +16,11 @@ import styles from "/styles/jss/nextjs-material-kit-pro/components/navPillsStyle
 
 const useStyles = makeStyles(sectionPillsStyle);
 
-const Categories = () => {
+const Categories = ({updateCurrentCategory}) => {
   const classes = useStyles();
-  const [currentCategory, setCurrentCategory] = React.useState("All");
 
   const updateCategory = (selectedCategory) => {
-    console.log("currenctly selected: ", selectedCategory)
+    updateCurrentCategory(selectedCategory)
   }
 
   return ( 
