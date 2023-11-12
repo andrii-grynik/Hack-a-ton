@@ -4,11 +4,7 @@ import GridContainer from "/components/Grid/GridContainer.js";
 import GridItem from "/components/Grid/GridItem.js";
 import Button from "/components/CustomButtons/Button.js";
 import Card from "/components/Card/Card.js";
-import CardAvatar from "/components/Card/CardAvatar.js";
 import sectionBlogInfoStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostSections/sectionBlogInfoStyle.js";
-import Tooltip from "@mui/material/Tooltip";
-import Reply from "@mui/icons-material/Reply";
-import Favorite from "@mui/icons-material/Favorite";
 import Media from "/components/Media/Media.js";
 import CustomInput from "/components/CustomInput/CustomInput.js";
 import Image from 'next/image';
@@ -17,7 +13,7 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({post}) {
 
-  const { title, description, author, category, comments } = post;
+  const { title, description, author, category, comments,status } = post;
   
   const [showComment, setShowComment] = React.useState(false);
 
@@ -29,6 +25,8 @@ export default function Posts({post}) {
         author={author} 
         category={category} 
         hasComment={comments? true: false}
+        toggleShowComment={setShowComment}
+        toggleStatus={showComment}
       />
       {showComment &&  <SectionComments comments={comments}/>  }             
   </>
@@ -36,7 +34,7 @@ export default function Posts({post}) {
 }
 
 
-function SectionBlogInfo({ title, description, author, category, hasComment }) {
+function SectionBlogInfo({ title, description, author, category, hasComment,toggleShowComment,toggleStatus }) {
 
   const classes = useStyles();
   return (
@@ -51,7 +49,6 @@ function SectionBlogInfo({ title, description, author, category, hasComment }) {
                 alt="Item for recycling"
                 width={500}
                 height={500}
-                alt="Picture of the author"
               />                
               </GridItem>
               <GridItem xs={12} sm={8} md={8}>
@@ -63,7 +60,15 @@ function SectionBlogInfo({ title, description, author, category, hasComment }) {
                 <p className={classes.description}>
                   {category}
                 </p>
-                {hasComment && <Button color="primary" round className={classes.footerButtons}>
+                <p className={classes.description}>
+                  {!toggleStatus && "Not "} Available
+                </p>
+                {hasComment && 
+                <Button 
+                color="primary" 
+                round className={classes.footerButtons}
+                onClick={() => toggleShowComment(!toggleStatus)}
+                >
                   Show Comments
               </Button>}
               </GridItem>
@@ -75,9 +80,8 @@ function SectionBlogInfo({ title, description, author, category, hasComment }) {
   );
 }
 
-function SectionComments({comments}) {
-  // { author: "user3", details: "I like this!" },
-
+function SectionComments({ comments }) {
+  
   const classes = useStyles();
 
   const displayComments = () => {  
