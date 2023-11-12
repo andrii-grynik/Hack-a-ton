@@ -21,3 +21,18 @@
 //     res.status(405).json({ error: "Method Not Allowed" });
 //   }
 // }
+
+import { getComments } from "../../database/comments";
+
+export default async function handler(req, res) {
+  if (req.method === "GET") {
+    const postId = req.query.postId;
+    try {
+      const posts = await getComments(postId);
+      res.status(200).json(posts);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+}

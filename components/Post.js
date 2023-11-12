@@ -7,6 +7,7 @@ import Card from "/components/Card/Card.js";
 import sectionBlogInfoStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostSections/sectionBlogInfoStyle.js";
 import Image from 'next/image';
 import Comments from "./Comments";
+const axios = require('axios');
 // import { getComments } from "../database/comments";
 
 
@@ -14,31 +15,42 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({ post }) {
 
+  const [hasComment, setHasComment] = useState(false);
   const [comments, setComments] = useState([]);
   const [updateComment, setUpdateComment] = useState(false);
   const { _id, title, description, author, category, available } = post;
 
   const [showComment, setShowComment] = React.useState(false);
 
-  // //NEED HELP HERE
-  // useEffect(async() => {
-  //   console.log("here to fetch comment!, ", _id);
-  //   console.log("here to fetch comment!, ", typeof(_id));
+  useEffect(() => {
+    const postId = _id;
 
-  //   let allComemnts = [];
-  // try {
-  //   const result = await getComments(_id);
-  //   allComemnts = JSON.parse(JSON.stringify(result));
-  // } catch (err) {
-  //   allComemnts = [];
-  //   console.log("err: ",err);
-  //   }    
+    axios.get('/api/comments', {
+      params: {
+        postId: postId
+      }
+    })
+      .then(response => {
+        // Handle the response here
+        const commentsFromDb = response.data;
+        
+        console.log("commentsFromDb: ", commentsFromDb);
+        if (commentsFromDb) {
+          setComments(commentsFromDb);
+        }
+        console.log("comments of current post: ", comments);
 
-  //   console.log("allComemnts! ", allComemnts);
-  //   setComments(allComemnts);
-  //   setUpdateComment(false);
-  // },[updateComment])
-  //  //NEED HELP UNTIL HERE
+        // if (comments.length > 0) {
+        //   setHasComment(true);          
+        // }
+      })
+      .catch(error => {
+        // Handle errors here
+        console.error("error fetching comments:", error);
+      });
+
+    setUpdateComment(false);
+  }, [updateComment]);
 
   const updatePostStatus = () => {
     //NEED TO WORK! make a database call to update status of post
@@ -75,15 +87,6 @@ export default function Posts({ post }) {
                   <p className={classes.description}>
                     {!available && "Not "} Available
                   </p>
-                  {/* {comments && 
-                <Button 
-                color="primary" 
-                round className={classes.footerButtons}
-                onClick={()=> setShowComment(!showComment)}
-                >
-                      {showComment ? "Hide" : "Show"} Comments
-                  </Button>}
-                 */}
                   {available && <Button
                     color="primary"
                     round className={classes.footerButtons}
@@ -99,7 +102,7 @@ export default function Posts({ post }) {
         </GridContainer>
       </div>
 
-      {/* {showComment && <Comments comments={comments} />} */}
+      {showComment && <Comments key={_id} comments={comments} />}
     </>
 
   );

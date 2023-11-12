@@ -11,7 +11,7 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Comments({ comments }) {
   const classes = useStyles();
-
+console.log("got the comments! ",comments)
   const [newComment, setNewComment] = React.useState("");
 
   const handleCommentChange = (event) => {
@@ -34,18 +34,19 @@ export default function Comments({ comments }) {
 
 
   const displayComments = () => {  
-  return  comments.map(({ author,details, time }) => (      
+  return  comments.map(({ author,text }) => (      
     <>   
        <Media
               avatar="/img/faces/card-profile4-square.jpg"
               title={
                 <span>
-                  {author} <small>· {time}</small>
+                  {author.name} 
+                  {/* <small>· {time}</small> */}
                 </span>
               }
               body={
                 <p className={classes.color555}>
-                  {details}
+                  {text}
                 </p>
               }             
             />        
