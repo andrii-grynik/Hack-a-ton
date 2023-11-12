@@ -28,14 +28,12 @@ export async function getPosts(category) {
   const db = driver.db("market");
   const collection = db.collection("posts");
   if (category) {
-    console.log('category', category);
     return await collection.find({ available: true, category: category }).toArray();
   }
   return await collection.find({ available: true }).toArray();
 }
 
 export async function getUsersPosts(userId) {
-  console.log(userId);
   const driver = await getDriver();
   const db = driver.db("market");
   const collection = db.collection("posts");
