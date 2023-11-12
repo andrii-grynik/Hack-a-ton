@@ -35,7 +35,7 @@ export default function Posts({ post }) {
       .then(response => {
         // Handle the response here
         const commentsFromDb = response.data;
-        
+
         if (commentsFromDb) {
           setComments(commentsFromDb);
         }
@@ -79,7 +79,7 @@ export default function Posts({ post }) {
                   />
                 </GridItem>
                 <GridItem xs={12} sm={8} md={8}>
-                  <h4 className={classes.cardTitle}>{author.name}</h4>
+                  <a href={"/user/" + author.id}><h4 className={classes.cardTitle}>{author.name}</h4></a>
                   <h3 className={classes.cardTitle}>{title}</h3>
                   <p className={classes.description}>
                     {description}
@@ -90,12 +90,12 @@ export default function Posts({ post }) {
                   <p className={classes.description}>
                     {!status && "Not "} Available
                   </p>
-                  { comments && 
-                <Button 
-                color="primary" 
-                round className={classes.footerButtons}
-                onClick={()=> setShowComment(!showComment)}
-                >
+                  {comments &&
+                    <Button
+                      color="primary"
+                      round className={classes.footerButtons}
+                      onClick={() => setShowComment(!showComment)}
+                    >
                       {showComment ? "Hide" : "Show"} Comments
                   </Button>}
                 
@@ -114,7 +114,7 @@ export default function Posts({ post }) {
         </GridContainer>
       </div>
 
-      {showComment && <Comments key={_id} comments={comments} />}
+      {showComment && <Comments key={_id} comments={comments} postId={_id} />}
     </>
 
   );

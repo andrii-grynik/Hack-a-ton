@@ -9,7 +9,7 @@ import CardAvatar from "/components/Card/CardAvatar.js";
 import CardBody from "/components/Card/CardBody.js";
 import CardFooter from "/components/Card/CardFooter.js";
 import Button from "/components/CustomButtons/Button.js";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 
 import teamStyle from "/styles/jss/nextjs-material-kit-pro/pages/aboutUsSections/teamStyle.js";
 
@@ -29,11 +29,7 @@ export default function SectionTeam() {
             classes.textCenter
           )}
         >
-          <h2 className={classes.title}>We are nerd rockstars</h2>
-          <h5 className={classes.description}>
-            This is the paragraph where you can write more details about your
-            team. Keep you user engaged by providing meaningful information.
-          </h5>
+          <h2 className={classes.title}>Who we are</h2>
         </GridItem>
       </GridContainer>
       <GridContainer>
@@ -42,24 +38,28 @@ export default function SectionTeam() {
             <CardAvatar profile plain>
               <a href="#pablo">
                 <img
-                  src="/img/faces/marc.jpg"
+                  src="/img/Omar.jpg"
                   alt="profile-pic"
                   className={classes.img}
                 />
               </a>
             </CardAvatar>
             <CardBody plain>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
-              <h6 className={classes.textMuted}>CEO / Co-Founder</h6>
+              <h4 className={classes.cardTitle}>Omar Hamid</h4>
+              <h6 className={classes.textMuted}>Full Stack Developer</h6>
               <p className={classes.cardDescription}>
-                And I love you like Kanye loves Kanye. We need to restart the
-                human foundation.
+                As a passionate and skilled full stack developer, I bring a
+                comprehensive blend of front-end and back-end expertise to the
+                table. My strong problem-solving abilities, coupled with a keen
+                eye for design, allow me to create user-centric solutions that
+                are both aesthetically pleasing and highly functional.
               </p>
             </CardBody>
             <CardFooter className={classes.justifyContent}>
-              <Button href="#pablo" justIcon simple color="twitter">
-                <i className="fab fa-twitter" />
+              <Button href="#pablo" justIcon simple color="linkedin">
+                <i className="fab fa-linkedin-in" />
               </Button>
+
               <Button href="#pablo" justIcon simple color="facebook">
                 <i className="fab fa-facebook" />
               </Button>
@@ -74,23 +74,25 @@ export default function SectionTeam() {
             <CardAvatar profile plain>
               <a href="#pablo">
                 <img
-                  src="/img/faces/kendall.jpg"
+                  src="/img/MoMo.jpg"
                   alt="profile-pic"
                   className={classes.img}
                 />
               </a>
             </CardAvatar>
             <CardBody plain>
-              <h4 className={classes.cardTitle}>Tania Andrew</h4>
-              <h6 className={classes.textMuted}>DESIGNER</h6>
+              <h4 className={classes.cardTitle}>Momo Lyer </h4>
+              <h6 className={classes.textMuted}>Software Engineer</h6>
               <p className={classes.cardDescription}>
-                Don{"'"}t be scared of the truth because we need to restart the
-                human foundation. And I love you like Kanye loves Kanye.
+                Momo is Calgary based Software Engineer with prior experince in
+                full stack development. When she is not busy challenging herself
+                with new coding techniques, she can be found hiking in the
+                Canadian Rockies or knitting at home with her cats, Chia & Chai.
               </p>
             </CardBody>
             <CardFooter className={classes.justifyContent}>
-              <Button href="#pablo" justIcon simple color="twitter">
-                <i className="fab fa-twitter" />
+              <Button href="#pablo" justIcon simple color="facebook">
+                <i className="fab fa-facebook" />
               </Button>
               <Button href="#pablo" justIcon simple color="dribbble">
                 <i className="fab fa-dribbble" />
@@ -106,18 +108,19 @@ export default function SectionTeam() {
             <CardAvatar profile plain>
               <a href="#pablo">
                 <img
-                  src="/img/faces/christian.jpg"
+                  src="/img/John.jpg"
                   alt="profile-pic"
                   className={classes.img}
                 />
               </a>
             </CardAvatar>
             <CardBody plain>
-              <h4 className={classes.cardTitle}>Christian Mike</h4>
-              <h6 className={classes.textMuted}>Web Developer</h6>
+              <h4 className={classes.cardTitle}>John Ngo</h4>
+              <h6 className={classes.textMuted}>Full Stack Developer</h6>
               <p className={classes.cardDescription}>
-                I love you like Kanye loves Kanye. Don{"'"}t be scared of the
-                truth because we need to restart the human foundation.
+                Passionate Full Stack developer with a keen eye for clean and
+                efficient code, dedicated to crafting seamless and user-friendly
+                digital experiences.
               </p>
             </CardBody>
             <CardFooter className={classes.justifyContent}>
@@ -127,6 +130,9 @@ export default function SectionTeam() {
               <Button href="#pablo" justIcon simple color="dribbble">
                 <i className="fab fa-dribbble" />
               </Button>
+              <Button href="#pablo" justIcon simple color="linkedin">
+                <i className="fab fa-linkedin-in" />
+              </Button>
             </CardFooter>
           </Card>
         </GridItem>
@@ -135,27 +141,30 @@ export default function SectionTeam() {
             <CardAvatar profile plain>
               <a href="#pablo">
                 <img
-                  src="/img/faces/avatar.jpg"
+                  src="/img/headShot.PNG"
                   alt="profile-pic"
                   className={classes.img}
                 />
               </a>
             </CardAvatar>
             <CardBody plain>
-              <h4 className={classes.cardTitle}>Rebecca Stormvile</h4>
-              <h6 className={classes.textMuted}>WEB DEVELOPER</h6>
+              <h4 className={classes.cardTitle}>Andrii Grynik</h4>
+              <h6 className={classes.textMuted}>Full Stack Developer</h6>
               <p className={classes.cardDescription}>
-                And I love you like Kanye loves Kanye. We really need to restart
-                the human foundation.
+                Well versed Full Stack Developer with a broad IT knowledge
+                spectrum. Great understanding of multiple programming languages
+                and frameworks. I thrive to create efficent and scalable
+                solutions with great user experience.
               </p>
             </CardBody>
             <CardFooter className={classes.justifyContent}>
               <Button href="#pablo" justIcon simple color="google">
                 <i className="fab fa-google" />
               </Button>
-              <Button href="#pablo" justIcon simple color="twitter">
-                <i className="fab fa-twitter" />
+              <Button href="#pablo" justIcon simple color="linkedin">
+                <i className="fab fa-linkedin-in" />
               </Button>
+
               <Button href="#pablo" justIcon simple color="dribbble">
                 <i className="fab fa-dribbble" />
               </Button>

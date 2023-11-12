@@ -1,8 +1,8 @@
 /*eslint-disable*/
 import React, { useState, useEffect } from "react";
 
-import Layout from "../components/Layout";
-import Posts from "../components/Posts";
+import Layout from "/components/Layout";
+import Posts from "/components/Posts";
 import { getUsersPosts } from "/database/posts";
 import { getComments } from "/database/comments";
 // nodejs library that concatenates classes
@@ -80,11 +80,11 @@ export default function ProfilePage({ postFromDb }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ params }) {
   let postFromDb = [];
   let allComemnts = [];
   try {
-    const result = await getUsersPosts(1);
+    const result = await getUsersPosts(params.id);
     postFromDb = JSON.parse(JSON.stringify(result));
 
     const result2 = await getComments(postFromDb[0]._id);
@@ -97,5 +97,12 @@ export async function getStaticProps() {
 
   return {
     props: { postFromDb, allComemnts },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking'
   };
 }

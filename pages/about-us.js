@@ -15,7 +15,7 @@ import GridItem from "/components/Grid/GridItem.js";
 import Parallax from "/components/Parallax/Parallax.js";
 import Footer from "/components/Footer/Footer.js";
 // sections for this page
-import SectionDescription from "/pages-sections/about-us/SectionDescription.js";
+
 import SectionTeam from "/pages-sections/about-us/SectionTeam.js";
 import SectionServices from "/pages-sections/about-us/SectionServices.js";
 import SectionOffice from "/pages-sections/about-us/SectionOffice.js";
@@ -34,7 +34,7 @@ export default function AboutUsPage() {
   return (
     <div>
       <Header
-        brand="NextJS Material Kit PRO"
+        brand="Our Name goes Here!"
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         color="transparent"
@@ -43,7 +43,7 @@ export default function AboutUsPage() {
           color: "info",
         }}
       />
-      <Parallax image="/img/bg9.jpg" filter="dark" small>
+      <Parallax image="/img/sus.png" small>
         <div className={classes.container}>
           <GridContainer justifyContent="center">
             <GridItem
@@ -54,19 +54,12 @@ export default function AboutUsPage() {
                 classes.mrAuto,
                 classes.textCenter
               )}
-            >
-              <h1 className={classes.title}>About Us</h1>
-              <h4>
-                Meet the amazing team behind this project and find out more
-                about how we work.
-              </h4>
-            </GridItem>
+            ></GridItem>
           </GridContainer>
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <SectionDescription />
           <SectionTeam />
           <SectionServices />
           <SectionOffice />
@@ -76,46 +69,6 @@ export default function AboutUsPage() {
       <Footer
         content={
           <div>
-            <div className={classes.left}>
-              <List className={classes.list}>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Creative Tim
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="http://blog.creative-tim.com/?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Blog
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=njsmkp-about-us"
-                    className={classes.block}
-                    target="_blank"
-                  >
-                    Licenses
-                  </a>
-                </ListItem>
-              </List>
-            </div>
             <div className={classes.right}>
               &copy; {1900 + new Date().getYear()} , made with{" "}
               <Favorite className={classes.icon} /> by{" "}
@@ -123,9 +76,8 @@ export default function AboutUsPage() {
                 href="https://www.creative-tim.com?ref=njsmkp-about-us"
                 target="_blank"
               >
-                Creative Tim
+                MaddBuggs
               </a>{" "}
-              for a better web.
             </div>
           </div>
         }
