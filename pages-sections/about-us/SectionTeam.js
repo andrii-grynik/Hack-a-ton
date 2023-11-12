@@ -47,7 +47,13 @@ export default function SectionTeam() {
             <CardBody plain>
               <h4 className={classes.cardTitle}>Omar Hamid</h4>
               <h6 className={classes.textMuted}>Full Stack Developer</h6>
-              <p className={classes.cardDescription}>About me goes here</p>
+              <p className={classes.cardDescription}>
+                As a passionate and skilled full stack developer, I bring a
+                comprehensive blend of front-end and back-end expertise to the
+                table. My strong problem-solving abilities, coupled with a keen
+                eye for design, allow me to create user-centric solutions that
+                are both aesthetically pleasing and highly functional.
+              </p>
             </CardBody>
             <CardFooter className={classes.justifyContent}>
               <Button href="#pablo" justIcon simple color="linkedin">
