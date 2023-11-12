@@ -15,15 +15,15 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({ post }) {
 
+  const [hasComment, setHasComment] = useState(false);
   const [comments, setComments] = useState([]);
   const [updateComment, setUpdateComment] = useState(false);
   const { _id, title, description, author, category, available } = post;
 
   const [showComment, setShowComment] = React.useState(false);
 
-  //NEED HELP HERE
   useEffect(() => {
-    const postId = _id; // Replace this with your actual postId
+    const postId = _id;
 
     axios.get('/api/comments', {
       params: {
@@ -32,16 +32,25 @@ export default function Posts({ post }) {
     })
       .then(response => {
         // Handle the response here
-        console.log(response.data);
+        const commentsFromDb = response.data;
+        
+        console.log("commentsFromDb: ", commentsFromDb);
+        if (commentsFromDb) {
+          setComments(commentsFromDb);
+        }
+        console.log("comments of current post: ", comments);
+
+        // if (comments.length > 0) {
+        //   setHasComment(true);          
+        // }
       })
       .catch(error => {
         // Handle errors here
-        console.error(error);
+        console.error("error fetching comments:", error);
       });
 
     setUpdateComment(false);
   }, [updateComment]);
-  //NEED HELP UNTIL HERE
 
   const updatePostStatus = () => {
     //NEED TO WORK! make a database call to update status of post
@@ -67,7 +76,7 @@ export default function Posts({ post }) {
                   />
                 </GridItem>
                 <GridItem xs={12} sm={8} md={8}>
-                  <h4 className={classes.cardTitle}>{author.name}</h4>
+                  <a href={"/user/" + author.id}><h4 className={classes.cardTitle}>{author.name}</h4></a>
                   <h3 className={classes.cardTitle}>{title}</h3>
                   <p className={classes.description}>
                     {description}
@@ -78,15 +87,6 @@ export default function Posts({ post }) {
                   <p className={classes.description}>
                     {!available && "Not "} Available
                   </p>
-                  {/* {comments && 
-                <Button 
-                color="primary" 
-                round className={classes.footerButtons}
-                onClick={()=> setShowComment(!showComment)}
-                >
-                      {showComment ? "Hide" : "Show"} Comments
-                  </Button>}
-                 */}
                   {available && <Button
                     color="primary"
                     round className={classes.footerButtons}
@@ -102,7 +102,7 @@ export default function Posts({ post }) {
         </GridContainer>
       </div>
 
-      {/* {showComment && <Comments comments={comments} />} */}
+      {showComment && <Comments key={_id} comments={comments} />}
     </>
 
   );

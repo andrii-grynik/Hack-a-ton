@@ -26,7 +26,7 @@ import { getComments } from "../../database/comments";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const postId = req.params.postId;
+    const postId = req.query.postId;
     try {
       const posts = await getComments(postId);
       res.status(200).json(posts);
