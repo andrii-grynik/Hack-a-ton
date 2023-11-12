@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Posts from "../components/Posts";
 import Categories from "../components/Categories";
@@ -11,49 +11,56 @@ import styles from "/styles/jss/nextjs-material-kit-pro/pages/ecommerceSections/
 import GridContainer from "/components/Grid/GridContainer.js";
 
 const useStyles = makeStyles(styles);
-export default function Index({ postFromDb}) {
+export default function Index({ postFromDb }) {
   const classes = useStyles();
   const [currentCategory, setCurrentCategory] = React.useState(0);
   const [allPost, setAllPost] = useState([]);
-  
-  useEffect(() => {    
-    
+
+  const addPost = (post) => {
+    console.log(post);
+    const newPosts = [...allPost];
+    newPosts.push(post);
+    setAllPost(newPosts);
+  };
+
+  useEffect(() => {
+
     //NEED TO WORK! Refresh list of post based on category selected
     const category = categories[currentCategory].toLocaleLowerCase();
-    
-  console.log("Fetching daata for : ", category);
+
+    console.log("Fetching data for : ", category);
     const response = axios
       .get("/api/posts/", {
         params: {
-          category: category == "all"? "": category
+          category: category == "all" ? "" : category
         }
       })
       .then((result) => {
 
-      console.log("category fetch result: ", result.data);
+        console.log("category fetch result: ", result.data);
         setAllPost(result.data);
-        if (allPost.length<=0) {
-          console.log("should show error")
+        if (allPost.length <= 0) {
+          console.log("should show error");
         }
       })
-      .catch(err => console.error(err));   
-  },[currentCategory])
+      .catch(err => console.error(err));
+  }, [currentCategory]);
 
 
   return (
     <Layout>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '-3rem' }}>
-        <PostForm />
+        <PostForm addPost={addPost} />
       </div>
       <Categories updateCurrentCategory={setCurrentCategory} />
       <Posts posts={allPost} />
       {allPost.length <= 0 &&
-          <GridContainer justifyContent="center">
-        <h4 justifyContent="center"
-          className={classes.cardTitle}
-        >
-          There are no posts in this category
-        </h4>
+        <GridContainer justifyContent="center">
+          <h4 justifyContent="center"
+            className={classes.cardTitle}
+          >
+            There are no posts in this category
+          </h4>
         </GridContainer>}
     </Layout>
   );
@@ -66,10 +73,10 @@ export async function getStaticProps() {
   let postFromDb = [];
   try {
     const result = await getPosts();
-    postFromDb = JSON.parse(JSON.stringify(result));    
+    postFromDb = JSON.parse(JSON.stringify(result));
   } catch (err) {
     postFromDb = [];
-    console.log("err: ",err);
+    console.log("err: ", err);
   }
 
   return {
