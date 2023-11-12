@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <>
       <Header
         color="info"
-        brand="NextJS Material Kit PRO"
+        brand="Econnect"
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
       />

@@ -14,15 +14,12 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({ post }) {
 
-  const { _id, title, description, author, category, available,imageUrl } = post;
+  const { _id, title, description, author, category, available, imageUrl } = post;
   const [comments, setComments] = useState([]);
   const [updateComment, setUpdateComment] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [status, setStatus] = useState(available);
   const [showComment, setShowComment] = React.useState(false);
-
-  console.log("imageUrl: ", imageUrl)
-  console.log("imageUrl equal check: ", imageUrl === "/images/testimage.jpg")
 
   useEffect(() => {
     const postId = _id;
@@ -49,10 +46,10 @@ export default function Posts({ post }) {
   }, [updateComment]);
 
   useEffect(() => {
-    if(updateStatus){      
+    if (updateStatus) {
       setStatus(false);
     }
-  },[updateStatus])
+  }, [updateStatus]);
 
   const updatePostStatus = () => {
     //NEED TO WORK! make a database call to update status of post
@@ -71,7 +68,7 @@ export default function Posts({ post }) {
               <GridContainer>
                 <GridItem xs={12} sm={4} md={4}>
                   <Image
-                    src={imageUrl}                    
+                    src={imageUrl}
                     alt={title}
                     width={500}
                     height={500}
@@ -96,8 +93,8 @@ export default function Posts({ post }) {
                       onClick={() => setShowComment(!showComment)}
                     >
                       {showComment ? "Hide" : "Show"} Comments
-                  </Button>}
-                
+                    </Button>}
+
                   {status && <Button
                     color="primary"
                     round className={classes.footerButtons}
