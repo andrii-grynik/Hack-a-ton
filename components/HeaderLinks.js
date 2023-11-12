@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import makeStyles from "@mui/styles/makeStyles";
 import List from "@mui/material/List";
@@ -14,6 +15,7 @@ import styles from "/styles/headerLinksStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks() {
+  const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(() => {
     let value = false;
     if (typeof window !== "undefined") {
@@ -31,6 +33,11 @@ export default function HeaderLinks() {
   }, [loggedIn]);
 
   const classes = useStyles();
+
+  const logout = () => {
+    setLoggedIn(false);
+    router.push("/");
+  };
 
   return (
     <List className={classes.list + " " + classes.mlAuto}>
@@ -88,7 +95,7 @@ export default function HeaderLinks() {
           <ListItem className={classes.listItem}>
             <Hidden lgDown>
               <Button
-                href="#"
+                href="/my-profile"
                 color={"white"}
                 className={classes.navButton}
                 round
@@ -98,7 +105,7 @@ export default function HeaderLinks() {
             </Hidden>
             <Hidden mdUp>
               <Button
-                href="#"
+                href="/my-profile"
                 color={"info"}
                 className={classes.navButton}
                 round
@@ -113,7 +120,7 @@ export default function HeaderLinks() {
                 color={"white"}
                 className={classes.navButton}
                 round
-                onClick={() => setLoggedIn(false)}
+                onClick={logout}
               >
                 Logout
               </Button>
@@ -123,7 +130,7 @@ export default function HeaderLinks() {
                 color={"info"}
                 className={classes.navButton}
                 round
-                onClick={() => setLoggedIn(false)}
+                onClick={logout}
               >
                 Logout
               </Button>
