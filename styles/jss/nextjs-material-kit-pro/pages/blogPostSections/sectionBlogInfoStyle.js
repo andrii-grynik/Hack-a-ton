@@ -5,7 +5,7 @@ const sectionBlogInfoStyle = {
     paddingBottom: "0",
     backgroundPosition: "50%",
     backgroundSize: "cover",
-    padding: "70px 0"
+    padding: "30px 0"
   },
   blogTags: {
     marginTop: "8px"
