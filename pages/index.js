@@ -155,7 +155,7 @@ export default function Index({ postFromDb}) {
       <div className={classes.main}>
         <div className={classes.container}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '-3rem' }}>
-            <PostForm />
+            <PostForm addPost={addPost} />
           </div>
           <Categories updateCurrentCategory={setCurrentCategory} />
           <Posts posts={allPost} />
