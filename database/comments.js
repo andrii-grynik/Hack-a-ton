@@ -1,9 +1,10 @@
 import getDriver from "./connect";
 
 const commentData = {
-  postId: '65502bb28aa1508446b1a3a9',
+  postId: 1,
   text: 'some comment text',
   author: {
+    id: 1,
     name: 'John Doe',
     profileImage: 'profileImageUrl',
     itemsDonated: 20,

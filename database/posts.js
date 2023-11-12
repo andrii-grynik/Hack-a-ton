@@ -7,6 +7,7 @@ const postData = {
   available: true,
   category: 'furniture',
   author: {
+    id: 1,
     name: 'John Doe',
     profileImage: 'profileImageUrl',
     itemsDonated: 20,
@@ -33,3 +34,10 @@ export async function getPosts(category) {
   return await collection.find({ available: true }).toArray();
 }
 
+export async function getUsersPosts(userId) {
+  console.log(userId);
+  const driver = await getDriver();
+  const db = driver.db("market");
+  const collection = db.collection("posts");
+  return await collection.find({ "author.id": userId }).toArray();
+}
