@@ -10,7 +10,7 @@ import style from "/styles/jss/nextjs-material-kit-pro/pages/componentsSections/
 
 const useStyles = makeStyles(style);
 
-export default function PostForm() {
+export default function PostForm({ addPost }) {
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -42,6 +42,20 @@ export default function PostForm() {
     formData.append("title", title);
     formData.append("description", description);
     formData.append("image", selectedFile);
+    const post = {
+      imageUrl: `/images/${selectedFile.name}`,
+      title,
+      description,
+      author: {
+        id: 1,
+        name: "John Doe",
+        profileImage: "ProfileImageUrl",
+        itemsDonated: 20,
+        itemsReceived: 10,
+      },
+      available: true,
+      category: 'other',
+    };
 
     // Send formData to your API handler
     const response = await axios.post('/api/posts', formData, {
@@ -49,6 +63,8 @@ export default function PostForm() {
         'Content-Type': 'multipart/form-data',
       },
     });
+
+    addPost(post);
 
     if (response.status === 201) {
       console.log('Post created successfully. Post ID:', response.data.postId);
@@ -60,67 +76,67 @@ export default function PostForm() {
 
   const handleShowCreatePostToggle = () => {
     setShowCreatePost(true);
-  }
+  };
 
   return (
     <>
-    {!showCreatePost && <Button color="tumblr" className={classes.floatRight} onClick={handleShowCreatePostToggle}>
-    Create Post
-  </Button>}
-    
-   {showCreatePost && <Media
-      body={
-        <div>
-          <GridContainer>
-            <GridItem xs={12} sm={6} md={6}>
-              <CustomInput
-                id="title"
-                formControlProps={{
-                  fullWidth: true
-                }}
-                inputProps={{
-                  placeholder: "Item Name",
-                  value: title,
-                  onChange: handleTitleChange
-                }}
-              />
-            </GridItem>
-          </GridContainer>
-          <CustomInput
-            id="description"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              multiline: true,
-              rows: 3,
-              placeholder: " Write some description about the item",
-              value: description,
-              onChange: handleDescriptionChange
-            }}
-          />
-          {/* Hidden file input */}
-          <input
-            id="imageInput"
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={handleFileChange}
-          />
-        </div>
-      }
-      footer={
-        <div className={classes.signInButton} style={{ display: 'flex', justifyContent: 'space-between' }}>
-          {/* Button to trigger image upload */}
-          <Button color="tumblr" className={classes.floatRight} onClick={handleImageUpload}>
-            Upload Image
-          </Button>
-          <Button color="primary" className={classes.floatRight} onClick={handleCreatePost}>
-            Create Post
-          </Button>
-        </div>
-      }
-    />} 
+      {!showCreatePost && <Button color="tumblr" className={classes.floatRight} onClick={handleShowCreatePostToggle}>
+        Create Post
+      </Button>}
+
+      {showCreatePost && <Media
+        body={
+          <div>
+            <GridContainer>
+              <GridItem xs={12} sm={6} md={6}>
+                <CustomInput
+                  id="title"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{
+                    placeholder: "Item Name",
+                    value: title,
+                    onChange: handleTitleChange
+                  }}
+                />
+              </GridItem>
+            </GridContainer>
+            <CustomInput
+              id="description"
+              formControlProps={{
+                fullWidth: true
+              }}
+              inputProps={{
+                multiline: true,
+                rows: 3,
+                placeholder: " Write some description about the item",
+                value: description,
+                onChange: handleDescriptionChange
+              }}
+            />
+            {/* Hidden file input */}
+            <input
+              id="imageInput"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+          </div>
+        }
+        footer={
+          <div className={classes.signInButton} style={{ display: 'flex', justifyContent: 'space-between' }}>
+            {/* Button to trigger image upload */}
+            <Button color="tumblr" className={classes.floatRight} onClick={handleImageUpload}>
+              Upload Image
+            </Button>
+            <Button color="primary" className={classes.floatRight} onClick={handleCreatePost}>
+              Create Post
+            </Button>
+          </div>
+        }
+      />}
     </>
   );
 }
