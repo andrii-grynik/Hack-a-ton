@@ -1,5 +1,5 @@
 import React from "react";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 // @mui/icons-material
 import TrendingUp from "@mui/icons-material/TrendingUp";
 // core components
@@ -24,7 +24,7 @@ export default function SectionSimilarStories() {
         <GridContainer>
           <GridItem md={12}>
             <h2 className={classes.title + " " + classes.textCenter}>
-              Similar Stories
+              Local Sustainability outreach
             </h2>
             <br />
             <GridContainer>
@@ -38,7 +38,7 @@ export default function SectionSimilarStories() {
                       className={classes.coloredShadow}
                       style={{
                         backgroundImage: "url('/img/examples/blog6.jpg')",
-                        opacity: "1"
+                        opacity: "1",
                       }}
                     />
                   </CardHeader>
@@ -71,7 +71,7 @@ export default function SectionSimilarStories() {
                       className={classes.coloredShadow}
                       style={{
                         backgroundImage: "url('/img/examples/blog8.jpg')",
-                        opacity: "1"
+                        opacity: "1",
                       }}
                     />
                   </CardHeader>
@@ -103,7 +103,7 @@ export default function SectionSimilarStories() {
                       className={classes.coloredShadow}
                       style={{
                         backgroundImage: "url('/img/examples/blog7.jpg')",
-                        opacity: "1"
+                        opacity: "1",
                       }}
                     />
                   </CardHeader>

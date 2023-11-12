@@ -1,11 +1,17 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import HeaderLinks from "/components/HeaderLinks.js";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
-      <main>
+      <Header
+        color="info"
+        brand="NextJS Material Kit PRO"
+        links={<HeaderLinks dropdownHoverColor="info" />}
+        fixed
+      />
+      <main style={{paddingTop: "70px"}}>
         {children}
       </main>
       <Footer />

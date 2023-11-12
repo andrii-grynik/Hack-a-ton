@@ -43,30 +43,20 @@ export default function BlogPostPage() {
           color: "info",
         }}
       />
-      <Parallax image="/img/bg5.jpg" filter="dark">
+      <Parallax image="/img/sus.png" filter="dark">
         <div className={classes.container}>
           <GridContainer justifyContent="center">
             <GridItem md={8} className={classes.textCenter}>
-              <h1 className={classes.title}>
-                How We Built the Most Successful Castle Ever
-              </h1>
-              <h4 className={classes.subtitle}>
-                The last 48 hours of my life were total madness. This is what I
-                did.
-              </h4>
-              <br />
-              <Button color="rose" size="lg" round>
-                <FormatAlignLeft /> Read Article
-              </Button>
+              <h1 className={classes.title}>Dont let it go to Waste!</h1>
+              <h4 className={classes.subtitle}>Share, Donate, Trade, LOVE!</h4>
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
       <div className={classes.main}>
         <div className={classes.container}>
-          <SectionText />
           <SectionBlogInfo />
-          <SectionComments />
+          {/* <SectionComments /> */}
         </div>
       </div>
       <SectionSimilarStories />
