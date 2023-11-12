@@ -43,5 +43,8 @@
       "not op_mini all"
     ],
     "development": []
-  }
+  },
+  "browser":{
+    "child_process": false
+    } 
 }
