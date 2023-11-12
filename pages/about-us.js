@@ -34,7 +34,7 @@ export default function AboutUsPage() {
   return (
     <div>
       <Header
-        brand="Our Name goes Here!"
+        brand="Econnect"
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
         color="transparent"

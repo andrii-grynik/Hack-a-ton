@@ -71,8 +71,7 @@ export default function Posts({ post }) {
               <GridContainer>
                 <GridItem xs={12} sm={4} md={4}>
                   <Image
-                    src={"/images/IMG_3612.jpg"}
-                    // scr={encodeURIComponent(decodeURIComponent(imageUrl).replace(/\s+/g, ''));}
+                    src={imageUrl}                    
                     alt={title}
                     width={500}
                     height={500}
