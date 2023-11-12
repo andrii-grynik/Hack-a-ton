@@ -5,7 +5,6 @@ export default function Index({ postList, comments }) {
   return (
     <Layout>
       <Posts posts={postList} />
-      {/* <Posts posts={comments} /> */}
     </Layout>
   );
 }
@@ -28,11 +27,7 @@ export async function getStaticProps() {
     //map each post
       //get Comment for each post
 
- 
-
-  console.log("posts before props: ", postList);
-
-  return {
+   return {
     props: { postList, comments },
   };
 }
