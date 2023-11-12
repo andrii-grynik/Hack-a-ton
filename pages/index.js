@@ -4,14 +4,16 @@ import Posts from "../components/Posts";
 import Categories from "../components/Categories";
 import PostForm from "../components/custom/PostForm";
 import { getPosts } from "../database/posts";
+import { getComments } from "../database/comments";
 
-export default function Index({ postFromDb}) {
+export default function Index({ postFromDb,allComemnts}) {
   const [currentCategory, setCurrentCategory] = React.useState(0);
 
   //NEED TO WORK! Refresh list of post based on category selected
   console.log("currentCategory: ", currentCategory);
 
   console.log("postFromDb after fetching: ", postFromDb);
+  console.log("allComemnts after fetching: ", allComemnts);
 
   return (
     <Layout>
@@ -33,18 +35,14 @@ export async function getStaticProps() {
   //get Comment for each post
   
   let postFromDb = [];
-  let commentsFromDB = [];
+  let allComemnts = [];
   try {
     const result = await getPosts();
     postFromDb = JSON.parse(JSON.stringify(result));
-    // const commentResult =  await getComments(postFromDb[0]._id)
-    // commentsFromDB =JSON.parse(JSON.stringify(commentResult))
 
-    // postFromDb.map( post => {
-      
-    //   post.comment = comment;
-    //   return post;
-    // })
+    const result2 = await getComments(postFromDb[0]._id);
+      allComemnts = JSON.parse(JSON.stringify(result2));
+    
   } catch (err) {
     postFromDb = [];
     console.log("err: ",err);
@@ -63,6 +61,6 @@ export async function getStaticProps() {
   //   { title: "Free Food!", description: "I have lots of free food! Feel free to come collect it!", category: "Food", author: "user2", status: true, comments: comments1 }];
 
   return {
-    props: { postFromDb },
+    props: { postFromDb,allComemnts },
   };
 }

@@ -15,19 +15,35 @@ const useStyles = makeStyles(sectionBlogInfoStyle);
 export default function Posts({ post }) {
   
   const [comments, setComments] = useState([]);
+  const [updateComment, setUpdateComment] = useState(false);
   const { _id, title, description, author, category, available } = post;
   
   const [showComment, setShowComment] = React.useState(false);
 
-  // useEffect(async () => {
-  //   const commentResult =  await getComments(_id);
-  //   setComments(JSON.parse(JSON.stringify(commentResult)));
-  //   console.log("comments, ", comments)
-  // },[])
+  // //NEED HELP HERE
+  // useEffect(async() => {
+  //   console.log("here to fetch comment!, ", _id);
+  //   console.log("here to fetch comment!, ", typeof(_id));
+
+  //   let allComemnts = [];
+  // try {
+  //   const result = await getComments(_id);
+  //   allComemnts = JSON.parse(JSON.stringify(result));
+  // } catch (err) {
+  //   allComemnts = [];
+  //   console.log("err: ",err);
+  //   }    
+    
+  //   console.log("allComemnts! ", allComemnts);
+  //   setComments(allComemnts);
+  //   setUpdateComment(false);
+  // },[updateComment])
+  //  //NEED HELP UNTIL HERE
 
   const updatePostStatus = () => {
     //NEED TO WORK! make a database call to update status of post
     console.log("changing post status!")
+    setUpdateComment(true);
   }
 
 

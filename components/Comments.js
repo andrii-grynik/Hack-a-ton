@@ -18,6 +18,7 @@ export default function Comments({ comments }) {
     setNewComment(event.target.value);
   };
 
+   //NEED HELP HERE
   const handleCommentSubmit = () => {
     console.log("adding comment! ", newComment);
     //NEED TO WORK! make a database call to add new comment to the post
@@ -29,6 +30,7 @@ export default function Comments({ comments }) {
     //   setNewComment("");
     // }
   };
+  //NEED HELP UNTIL HERE
 
 
   const displayComments = () => {  
