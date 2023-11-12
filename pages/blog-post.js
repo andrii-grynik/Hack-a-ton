@@ -21,11 +21,42 @@ import SectionBlogInfo from "/pages-sections/blog-post/SectionBlogInfo.js";
 import SectionComments from "/pages-sections/blog-post/SectionComments.js";
 import SectionSimilarStories from "/pages-sections/blog-post/SectionSimilarStories.js";
 
+import gpt from "./gpt";
+
 import blogPostPageStyle from "/styles/jss/nextjs-material-kit-pro/pages/blogPostPageStyle.js";
 
 const useStyles = makeStyles(blogPostPageStyle);
 
 export default function BlogPostPage() {
+  const [response, setResponse] = React.useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const prompt = `What are some best practices for living a sustainable life?`;
+
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      const responseText = data.choices[0].text;
+
+      setResponse(responseText);
+    } catch (error) {
+      console.error("Error:", error);
+      setResponse(`Failed to get a response. Error: ${error.message}`);
+    }
+  };
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
@@ -49,6 +80,39 @@ export default function BlogPostPage() {
             <GridItem md={8} className={classes.textCenter}>
               <h1 className={classes.title}>Dont let it go to Waste!</h1>
               <h4 className={classes.subtitle}>Share, Donate, Trade, LOVE!</h4>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <form onSubmit={handleSubmit} style={{ margin: "20px" }}>
+                  <button type="submit">Get Sustainable Living Tips</button>
+                </form>
+                {response && (
+                  <div
+                    style={{
+                      maxWidth: "600px",
+                      padding: "20px",
+                      border: "1px solid #ddd",
+                      borderRadius: "5px",
+                      backgroundColor: "rgba(0, 0, 0, 0.7)", // semi-transparent dark background
+                      color: "white",
+                      backdropFilter: "blur(10px)", // blur effect on the background
+                      // Additional styles for better text visibility and layout
+                      boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+                      textAlign: "center",
+                      margin: "auto",
+                      marginTop: "20px",
+                    }}
+                  >
+                    <strong>Hello there!</strong>
+                    <p>{response}</p>
+                  </div>
+                )}
+              </div>
             </GridItem>
           </GridContainer>
         </div>
@@ -60,6 +124,7 @@ export default function BlogPostPage() {
         </div>
       </div>
       <SectionSimilarStories />
+
       <Footer
         content={
           <div>
