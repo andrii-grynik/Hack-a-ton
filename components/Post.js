@@ -33,7 +33,7 @@ export default function Posts({ post }) {
       .then(response => {
         // Handle the response here
         const commentsFromDb = response.data;
-        
+
         console.log("commentsFromDb: ", commentsFromDb);
         if (commentsFromDb) {
           setComments(commentsFromDb);
@@ -87,15 +87,15 @@ export default function Posts({ post }) {
                   <p className={classes.description}>
                     {!available && "Not "} Available
                   </p>
-                  { comments && 
-                <Button 
-                color="primary" 
-                round className={classes.footerButtons}
-                onClick={()=> setShowComment(!showComment)}
-                >
+                  {comments &&
+                    <Button
+                      color="primary"
+                      round className={classes.footerButtons}
+                      onClick={() => setShowComment(!showComment)}
+                    >
                       {showComment ? "Hide" : "Show"} Comments
-                  </Button>}
-                
+                    </Button>}
+
                   {available && <Button
                     color="primary"
                     round className={classes.footerButtons}
@@ -111,7 +111,7 @@ export default function Posts({ post }) {
         </GridContainer>
       </div>
 
-      {showComment && <Comments key={_id} comments={comments} />}
+      {showComment && <Comments key={_id} comments={comments} postId={_id} />}
     </>
 
   );
