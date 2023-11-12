@@ -4,6 +4,8 @@ const postData = {
   imageUrl: 'imageUrl',
   title: 'some title',
   description: 'some description',
+  available: true,
+  category: 'furniture',
   author: {
     name: 'John Doe',
     profileImage: 'profileImageUrl',
@@ -27,9 +29,10 @@ export async function createPost(postData) {
 
 export async function getPosts(filter) {
   const driver = await getDriver();
+  const postAvailability = filter.available.toLowerCase() === 'true';;
   const db = driver.db("market");
   const collection = db.collection("posts");
-  const posts = await collection.find({ available: filter.available, category: filter.category }).toArray();
+  const posts = await collection.find({ available: postAvailability, category: filter.category }).toArray();
   return posts;
 }
 

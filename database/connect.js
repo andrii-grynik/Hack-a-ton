@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 let client = null;
 
 const getDriver = async () => {
-  if (client && client.isConnected()) {
+  if (client) {
     return client;
   }
 
