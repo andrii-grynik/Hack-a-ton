@@ -8,14 +8,12 @@ import sectionBlogInfoStyle from "/styles/jss/nextjs-material-kit-pro/pages/blog
 import Image from 'next/image';
 import Comments from "./Comments";
 const axios = require('axios');
-// import { getComments } from "../database/comments";
 
 
 const useStyles = makeStyles(sectionBlogInfoStyle);
 
 export default function Posts({ post }) {
 
-  const [hasComment, setHasComment] = useState(false);
   const [comments, setComments] = useState([]);
   const [updateComment, setUpdateComment] = useState(false);
   const { _id, title, description, author, category, available } = post;
@@ -34,15 +32,9 @@ export default function Posts({ post }) {
         // Handle the response here
         const commentsFromDb = response.data;
         
-        console.log("commentsFromDb: ", commentsFromDb);
         if (commentsFromDb) {
           setComments(commentsFromDb);
         }
-        console.log("comments of current post: ", comments);
-
-        // if (comments.length > 0) {
-        //   setHasComment(true);          
-        // }
       })
       .catch(error => {
         // Handle errors here
