@@ -34,8 +34,9 @@ const upload = multer({
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {    
-      console.log("category param: ", req.query.category);
-      const posts = await getPosts();
+      const category = req.query.category;
+      console.log("category param: ", category);
+      const posts = await getPosts(category);
       res.status(200).json(posts);
     } catch (error) {
       console.error("Error fetching posts:", error);

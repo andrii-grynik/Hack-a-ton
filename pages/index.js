@@ -1,27 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import Layout from "../components/Layout";
 import Posts from "../components/Posts";
 import Categories from "../components/Categories";
 import PostForm from "../components/custom/PostForm";
 import axios from 'axios';
 import { getPosts } from "../database/posts";
+import classNames from "classnames";
+import makeStyles from '@mui/styles/makeStyles';
+import styles from "/styles/jss/nextjs-material-kit-pro/pages/ecommerceSections/blogStyle.js";
+import GridContainer from "/components/Grid/GridContainer.js";
 
+const useStyles = makeStyles(styles);
 export default function Index({ postFromDb}) {
+  const classes = useStyles();
   const [currentCategory, setCurrentCategory] = React.useState(0);
+  const [allPost, setAllPost] = useState([]);
   
-  console.log("postFromDb after fetching: ", postFromDb);
-
   useEffect(() => {    
+    
     //NEED TO WORK! Refresh list of post based on category selected
     const category = categories[currentCategory].toLocaleLowerCase();
+    
+  console.log("Fetching daata for : ", category);
     const response = axios
       .get("/api/posts/", {
         params: {
-          category: category
+          category: category == "all"? "": category
         }
       })
       .then((result) => {
-      console.log("category fetch result: ", result);
+
+      console.log("category fetch result: ", result.data);
+        setAllPost(result.data);
+        if (allPost.length<=0) {
+          console.log("should show error")
+        }
       })
       .catch(err => console.error(err));   
   },[currentCategory])
@@ -33,12 +46,20 @@ export default function Index({ postFromDb}) {
         <PostForm />
       </div>
       <Categories updateCurrentCategory={setCurrentCategory} />
-      <Posts posts={postFromDb} />
+      <Posts posts={allPost} />
+      {allPost.length <= 0 &&
+          <GridContainer justifyContent="center">
+        <h4 justifyContent="center"
+          className={classes.cardTitle}
+        >
+          There are no posts in this category
+        </h4>
+        </GridContainer>}
     </Layout>
   );
 }
 
-const categories = ["All", "Food", "Clothing", "Furniture", "Electronic", "Others"];
+const categories = ["All", "Food", "Clothing", "Furniture", "Electronic", "Other"];
 
 export async function getStaticProps() {
 
